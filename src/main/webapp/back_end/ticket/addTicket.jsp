@@ -86,7 +86,7 @@
 
     票種圖片：
     <input type="file" name="ticketImage"><br><br>
-	<img src="${pageContext.request.contextPath}/TicketImage?id=${ticketVO.ticketID}" width="120">
+	
     <input type="hidden" name="action" value="insert">
     <input type="submit" value="送出新增">
 </form>

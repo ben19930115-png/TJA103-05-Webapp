@@ -66,7 +66,7 @@
 		<td><%=ticketVO.getTicketName()%></td>
 		<td><%=ticketVO.getTicketPrice()%></td>
 		<td><%=ticketVO.getTicketDescription()%></td>
-		<td><%=ticketVO.getTicketImage()%></td>
+		<td><img src="${pageContext.request.contextPath}/TicketImage?id=${ticketVO.ticketID}" width="120"></td>
 	</tr>
 </table>
 
