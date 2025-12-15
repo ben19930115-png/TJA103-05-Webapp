@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 
 <html>
 <head>
@@ -54,7 +55,7 @@
   
   
   <li>
-<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ticket/ticket.do" >
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back_end/ticket/ticket.do" >
     <b>輸入票種編號 (如1):</b>
     <input type="text" name="ticketID">
     <input type="hidden" name="action" value="getOne_For_Display">
@@ -65,7 +66,7 @@
   <jsp:useBean id="ticketSvc" scope="page" class="com.ticket.model.TicketService" />
    
   <li>
-     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ticket/ticket.do" >
+     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back_end/ticket/ticket.do" >
        <b>選擇票種名稱:</b>
        <select size="1" name="ticketName">
          <c:forEach var="TicketVO" items="${ticketSvc.all}" > 
@@ -78,7 +79,7 @@
   </li>
   
   <li>
-     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ticket/ticket.do" >
+     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back_end/ticket/ticket.do" >
        <b>選擇票價:</b>
        <select size="1" name="ticketPrice">
          <c:forEach var="TicketVO" items="${ticketSvc.all}" > 
