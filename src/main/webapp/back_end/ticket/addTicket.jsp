@@ -71,6 +71,7 @@
 </head>
 <body>
 
+
 <form method="post"
       action="${pageContext.request.contextPath}/back_end/ticket/ticket.do"
       enctype="multipart/form-data">
