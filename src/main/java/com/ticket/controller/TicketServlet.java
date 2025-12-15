@@ -252,7 +252,6 @@ public class TicketServlet extends HttpServlet {
                 }
                 ticketVO.setTicketDescription(ticketDescription);
 
-                // 圖片 (Part name 要跟 JSP 一樣)
              // 圖片：有上傳就用新圖；沒上傳就沿用 DB 舊圖
                 Part part = req.getPart("ticketImage");
                 byte[] ticketImage = null;
