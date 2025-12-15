@@ -87,9 +87,7 @@ th, td {
 				<td>${ticketVO.ticketName}</td>
 				<td>${ticketVO.ticketPrice}</td>
 				<td>${ticketVO.ticketDescription}</td>
-				<td><img
-					src="<%=request.getContextPath()%>/back_end/ticket/ticket.do?ticketID=${ticketVO.ticketID}"
-					width="100" height="80" /></td>
+				<td><img src="${pageContext.request.contextPath}/TicketImage?id=${ticketVO.ticketID}" width="120"></td>
 
 				<td>
 					<form method="post"

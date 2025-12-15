@@ -1,18 +1,26 @@
-package com.ticket.servlet;
+package com.ticket.controller;
 
-import java.io.*;
-import java.sql.*;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import jakarta.servlet.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/DBGifReader4")
-public class DBGifReader4 extends HttpServlet {
+@WebServlet("/TicketImage")
+public class TicketImage extends HttpServlet {
 
 	Connection con;
 
@@ -26,10 +34,10 @@ public class DBGifReader4 extends HttpServlet {
 			Statement stmt = con.createStatement();
 			String id = req.getParameter("id").trim();
 			ResultSet rs = stmt.executeQuery(
-				"select pic from club where id="+id);
+				"select ticket_IMAGES from ticket_type where ticket_type_id="+id);
 
 			if (rs.next()) {
-				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("pic"));
+				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("ticket_IMAGES"));
 				byte[] buf = new byte[4 * 1024]; // 4K buffer
 				int len;
 				while ((len = in.read(buf)) != -1) {
@@ -38,7 +46,7 @@ public class DBGifReader4 extends HttpServlet {
 				in.close();
 			} else {
 				//res.sendError(HttpServletResponse.SC_NOT_FOUND);
-				InputStream in = getServletContext().getResourceAsStream("/NoData/none2.jpg");
+				InputStream in = getServletContext().getResourceAsStream("/resources/images/bugcat.png");
 				byte[] b = new byte[in.available()];
 				in.read(b);
 				out.write(b);
@@ -48,7 +56,7 @@ public class DBGifReader4 extends HttpServlet {
 			stmt.close();
 		} catch (Exception e) {
 			//System.out.println(e);
-			InputStream in = getServletContext().getResourceAsStream("/NoData/null.jpg");
+			InputStream in = getServletContext().getResourceAsStream("/resources/images/bugcat.png");
 //			byte[] b = new byte[in.available()];
 //			in.read(b);
 			byte[] b = in.readAllBytes(); // Java 9 的新方法
@@ -60,7 +68,7 @@ public class DBGifReader4 extends HttpServlet {
 	public void init() throws ServletException {
 		try {
 			Context ctx = new javax.naming.InitialContext();
-			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/David");
+			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/Ticket");
 			con = ds.getConnection();
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block

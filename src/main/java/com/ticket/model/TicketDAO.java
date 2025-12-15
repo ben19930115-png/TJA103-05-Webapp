@@ -162,6 +162,7 @@ public class TicketDAO implements TicketDAO_interface {
                 ticketVO.setTicketImage(rs.getBytes("ticket_IMAGES"));
                 list.add(ticketVO);
             }
+            
 
         } catch (SQLException se) {
             throw new RuntimeException("A database error occured. " + se.getMessage());
